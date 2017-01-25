@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<title>WEBSHOP</title>
+		<link rel="stylesheet" href="css/webshop.css" />
+	</head>
+	<body>
+		<script>
+		function confirm_logout() {
+			var logout = confirm('Weet u zeker dat u uit wilt loggen?');
+			if(logout) {
+				location.href='index.php?page=uitloggen';
+			}
+		}
+		</script>
+		<div class="header">
+			<input type="checkbox" id="menu" class="menu" />
+			<label class="menu-cirkel" for="menu" >
+				<span class="menu-streep"></span>
+			</label>
+			<?php
+				if(isset($_SESSION["L_ID"]) && $_SESSION["L_STATUS"]===1){
+					echo "<p id='gebruiker'>U bent ingelogd als:" . $_SESSION["L_NAME"]. "</p>";
+			?>
+			<nav class="drawer" >
+				<ul>
+					<li onclick="location.href='index.php?page=welkom'">Home</li>
+					<li onclick="location.href='index.php?page=editProfiel'">Profiel</li>
+					<li onclick="location.href='index.php?page=albumspage'">Albums</li>
+					<li onclick="location.href='index.php?page=rapporten'">Rapporten</li>
+					<li onclick="confirm_logout()">Loguit</li>
+				</ul>
+			</nav>
+			<?php
+				} else {
+			?>
+			<nav class="drawer" >
+				<ul>
+					<li onclick="location.href='index.php?page=inloggen'">Inloggen</li>
+					<li onclick="location.href='index.php?page=aanmelden'">Aanmelden</li>
+				</ul>
+			</nav>
+			<?php
+				}
+			?>
+		</div>

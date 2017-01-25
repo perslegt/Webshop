@@ -1,0 +1,55 @@
+		<div id="shoppingcart">
+			<input type="checkbox" name="cart" value="cart" id="cart" onclick="javascript:showShoppingcart();"/>
+			<label for="cart">f</label>
+			<div class="cartdrawer" >
+				<div id="rows"></div>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+document.getElementById("orderform").reset();
+function showShoppingcart(){
+	tabel = "<table><th>ID</th><th>Titel</th><th>Artiest</th>"+
+	"<th>genre</th><th>Prijs</th><th>Aantal</th><th>Del</th>";
+	rijen = "";
+	rij="";
+	// teller = document.getElementById("teller").value;
+	var x = 0;
+	while(document.getElementById("aantal[" + x + "]") != null){
+		x++;
+	// for(x=0; x<teller;x++){
+		if(document.getElementById("aantal["+ x +"]").value==0) {
+			continue;
+		}
+		rij="";
+		albumcode = document.getElementById("id["+ x +"]").value;
+		//titel = document.getElementById("titel["+ x +"]").value;
+		//artiest = document.getElementById("artiest["+ x +"]").value;
+		//genre = document.getElementById("genre["+ x +"]").value;
+		//prijs = document.getElementById("prijs["+ x +"]").value;
+		//aantal = document.getElementById("aantal["+ x +"]").value;
+		rij += "<tr>" +
+		"<td>" + albumcode + "</td>" +
+		//"<td>" + titel + "</td>" +
+		//"<td>" + artiest + "</td>" +
+		//"<td>" + genre + "</td>" +
+		//"<td>" + prijs + "</td>" +
+		//"<td>" + aantal + "</td>" +
+		"<td><a href='#top' onclick='delItem(" + x + ");'>" +
+		"<img width='25px' src='img/recycle.png'/></a></td></tr>";
+		rijen += rij;
+
+		
+	}
+	rijen += "</table>";
+	document.getElementById("rows").innerHTML = tabel + rijen;
+}
+function delItem(id){
+	del = confirm("Wilt U id:" + id + " verwijderen??");
+	if(del){
+		document.getElementById("aantal["+ id + "]").value = 0;
+		showShoppingcart();
+	}
+}
+</script>
